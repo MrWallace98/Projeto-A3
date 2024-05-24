@@ -5,6 +5,9 @@
  */
 package a3;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author MR WALLACE
@@ -62,10 +65,20 @@ public class BancoGW extends javax.swing.JFrame {
         loginButton.setText("LOGIN");
         loginButton.setAutoscrolls(true);
         loginButton.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.black, java.awt.Color.black));
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         criarcontaButton.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         criarcontaButton.setText("Criar Conta");
         criarcontaButton.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.black, java.awt.Color.black));
+        criarcontaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criarcontaButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,12 +141,47 @@ public class BancoGW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void contaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contaFieldActionPerformed
-        
-        
+     
+           
         
         
         // aqui onde sera digitado a conta (numeros)
     }//GEN-LAST:event_contaFieldActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+   GerenciadorUsuarios gerenciador = new GerenciadorUsuarios();
+   loginButton.addActionListener(new ActionListener() {
+       @Override
+       public void
+    actionPerformed(ActionEvent e) {
+        String numeroConta = contaField.getText();
+        String senha = senhaField.getText();
+        if (gerenciador.verificarLogin(numeroConta, senha)) {
+            // Login bem-sucedido
+        }else {
+            // Falha no login
+        }
+    }           
+
+       
+   });
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void criarcontaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarcontaButtonActionPerformed
+       GerenciadorUsuarios gerenciador = new GerenciadorUsuarios();
+        criarcontaButton.addActionListener(new ActionListener() {
+        @Override
+        public void
+     actionPerformed(ActionEvent e) {
+           String numeroConta = contaField.getText();
+           String senha = senhaField.getText();
+     gerenciador.adicionarUsuario(numeroConta, senha);
+                    // Conta criada com sucesso
+       }           
+
+           
+    });
+    }//GEN-LAST:event_criarcontaButtonActionPerformed
 
     
     public static void main(String args[]) {
